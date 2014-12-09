@@ -35,7 +35,7 @@ RUN mkdir -p /data/logs
 RUN mkdir -p /data/conf
 
 # Define entrypoint
-CMD ["/bin/bash", "/usr/local/bin/redis-startup.sh"]
+ENTRYPOINT ["/bin/bash", "/usr/local/bin/redis-startup.sh"]
 
 # Expose ports
 EXPOSE 26379 6379
