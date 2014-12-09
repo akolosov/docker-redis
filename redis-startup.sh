@@ -20,12 +20,12 @@ if [ -n "$REDIS_CUSTOM_SLAVE_SERVER" ]; then
 	fi
 fi
 
-if [ -n "$REDIS_SENTNEL_SERVER" ]; then
+if [ -n "$REDIS_SENTINEL_SERVER" ]; then
 	/usr/local/bin/redis-sentinel /etc/redis/sentinel.conf $@
 fi
 
-if [ -n "$REDIS_CUSTOM_SENTNEL_SERVER" ]; then
-	/usr/local/bin/redis-sentinel $REDIS_CUSTOM_SENTNEL_SERVER $@ 
+if [ -n "$REDIS_CUSTOM_SENTINEL_SERVER" ]; then
+	/usr/local/bin/redis-sentinel $REDIS_CUSTOM_SENTINEL_SERVER $@ 
 fi
 
 if [ -n "$REDIS_CLIENT" ]; then
