@@ -23,6 +23,7 @@ ADD sentinel.conf /etc/redis/sentinel.conf
 ADD redis.conf /etc/redis/redis.conf
 ADD redis-startup.sh /usr/local/bin/redis-startup.sh
 RUN chmod 755 /usr/local/bin/redis-startup.sh
+RUN sysctl vm.overcommit_memory=1
 
 # Define mountable directories
 VOLUME ["/data/logs", "/data/db", "/data/conf"]
