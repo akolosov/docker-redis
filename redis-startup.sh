@@ -28,3 +28,7 @@ if [ -n "$REDIS_CUSTOM_SENTNEL_SERVER" ]; then
 	exec /usr/local/bin/redis-sentinel $REDIS_CUSTOM_SENTNEL_SERVER $@ 
 fi
 
+if [ -n "$REDIS_CLIENT" ]; then
+	exec /bin/bash $@
+fi
+
