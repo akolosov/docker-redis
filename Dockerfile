@@ -24,17 +24,14 @@ RUN \
   sed -i 's/^\(dir .*\)$/# \1\ndir \/data\/db/' /etc/redis/redis.conf && \
   sed -i 's/^\(logfile .*\)$/# \1\nlogfile \/data\/log\/redis.log/' /etc/redis/redis.conf
 
-# Cleanup dependencies
-RUN apt-get -yqq remove gcc tar
-
 # Define mountable directories
-VOLUME ["/data"]
+VOLUME ["/data/logs", "/data/db"]
 
 # Define working directory
 WORKDIR /data
 
 RUN mkdir -p /data/db
-RUN mkdir -p /data/log
+RUN mkdir -p /data/logs
 
 # Define entrypoint
 ENTRYPOINT ["redis-sentinel", "/etc/redis/sentinel.conf"]
