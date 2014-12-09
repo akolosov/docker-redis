@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sysctl vm.overcommit_memory=1
+
 if [ -n "$REDIS_MASTER_SERVER" ]; then
 	exec /usr/local/bin/redis-server /etc/redis/redis.conf $@
 fi
