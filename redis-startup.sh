@@ -29,6 +29,6 @@ if [ -n "$REDIS_CUSTOM_SENTINEL_SERVER" ]; then
 fi
 
 if [ -n "$REDIS_CLIENT" ]; then
-	/bin/bash $@
+	/usr/local/bin/redis-cli $@
 fi
 

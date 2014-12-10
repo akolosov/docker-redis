@@ -22,6 +22,8 @@ RUN \
 ADD sentinel.conf /etc/redis/sentinel.conf
 ADD redis.conf /etc/redis/redis.conf
 ADD redis-startup.sh /usr/local/bin/redis-startup.sh
+RUN [ -z "$REDIS_MASTER_IP" ] && export REDIS_MASTER_IP="127.0.0.1"
+RUN sed -i "s/^\(sentinel monitor master \)\(\_MASTER\_IP\_\)\(.*\)$/\1$REDIS_MASTER_IP\3/" /etc/redis/sentinel.conf
 RUN chmod 755 /usr/local/bin/redis-startup.sh
 
 # Define mountable directories
