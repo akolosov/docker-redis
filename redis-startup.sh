@@ -21,6 +21,9 @@ if [ -n "$REDIS_CUSTOM_SLAVE_SERVER" ]; then
 fi
 
 if [ -n "$REDIS_SENTINEL_SERVER" ]; then
+	[ -z "$REDIS_MASTER_IP" ] && export REDIS_MASTER_IP="127.0.0.1"
+	sed -i "s/^\(sentinel monitor master \)\(\_MASTER\_IP\_\)\(.*\)$/\1$REDIS_MASTER_IP\3/" /etc/redis/sentinel.conf
+
 	/usr/local/bin/redis-sentinel /etc/redis/sentinel.conf $@
 fi
 
