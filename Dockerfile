@@ -20,20 +20,19 @@ RUN \
   rm -rf /tmp/redis-stable*
 
 ADD sentinel.conf /etc/redis/sentinel.conf
-ADD redis.conf /etc/redis/redis.conf
+ADD redis.conf /etc/redis/redis_default.conf
 ADD redis-startup.sh /usr/local/bin/redis-startup.sh
 
 RUN chmod 755 /usr/local/bin/redis-startup.sh
 
 # Define mountable directories
-VOLUME ["/data/logs", "/data/db", "/data/conf"]
+VOLUME ["/data/logs", "/data/db"]
 
 # Define working directory
 WORKDIR /data
 
 RUN mkdir -p /data/db
 RUN mkdir -p /data/logs
-RUN mkdir -p /data/conf
 
 # Define entrypoint
 ENTRYPOINT ["/bin/bash", "/usr/local/bin/redis-startup.sh"]
