@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp /etc/redis/redis_defaul.conf /etc/redis/redis.conf
+cp /etc/redis/redis_default.conf /etc/redis/redis.conf
 
 if [ "$REDIS_MODE" == "LRU" ]; then
 	echo "=> Configuring redis as a LRU cache"
