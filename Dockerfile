@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM akolosov/ubuntu
 
 # Install dependencies
 RUN apt-get update
