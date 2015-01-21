@@ -1,4 +1,4 @@
-FROM dockerfile/ubuntu
+FROM ubuntu:trusty
 
 # Install dependencies
 RUN apt-get update
