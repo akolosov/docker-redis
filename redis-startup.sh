@@ -24,7 +24,8 @@ fi
 
 if [ -n "$REDIS_SENTINEL_SERVER" ]; then
 	[ -z "$REDIS_MASTER_IP" ] && export REDIS_MASTER_IP="127.0.0.1"
-	sed -i "s/^\(sentinel monitor master \)\(\_MASTER\_IP\_\)\(.*\)$/\1$REDIS_MASTER_IP\3/" /etc/redis/sentinel.conf
+	[ -z "$REPLICATION_QUORUM" ] && export REPLICATION_QUORUM="2"
+	sed -i "s/^\(sentinel monitor master \)\(\_MASTER\_IP\_\)\( 6379 \)\(\_QUORUM\_\)$/\1$REDIS_MASTER_IP\3$REPLICATION_QUORUM/" /etc/redis/sentinel.conf
 
 	/usr/local/bin/redis-sentinel /etc/redis/sentinel.conf $@
 fi
